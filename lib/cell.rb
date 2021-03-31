@@ -9,8 +9,8 @@ class Cell
     @is_empty = true
   end
 
-  def empty?
-    @is_empty
+  def fire_upon
+    @fired_upon = true
   end
 
 end
