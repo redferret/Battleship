@@ -3,9 +3,27 @@ require './lib/ship'
 
 describe Ship do
 
-  it 'exists' do
-    test_ship = Ship.new('cruiser', 3)
-    expect(test_ship).to be_instance_of Ship
+  describe '#initialize' do
+    it 'exists' do
+      test_ship = Ship.new('cruiser', 3)
+      expect(test_ship).to be_instance_of Ship
+    end
+
+    it 'tests that health equals the length when created' do
+      test_ship = Ship.new('cruiser', 3)
+      expect(test_ship.health).to eq 3
+    end
+
+    it 'has a length' do
+      test_ship = Ship.new('cruiser', 3)
+      expect(test_ship.length).to eq 3
+    end
+
+    it 'is named' do
+      test_ship = Ship.new('cruiser', 3)
+      expect(test_ship.name).to eq 'cruiser'
+    end
+
   end
 
   describe '#hit' do
