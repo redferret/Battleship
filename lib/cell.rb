@@ -7,6 +7,8 @@ class Cell
     @coordinate = coordinate
     @ship = ship
     @is_empty = true
+  def fired_upon?
+    @fired_upon
   end
 
   def fire_upon
