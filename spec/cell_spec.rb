@@ -18,6 +18,11 @@ describe Cell do
 
   it '#fired_upon?' do
     # fires on cell
+  it '#fire_upon' do
+    test_cell = Cell.new("A1")
+    expect(test_cell.fired_upon?).to eq(false)
+    test_cell.fire_upon
+    expect(test_cell.fired_upon?).to eq(true)
   end
 
   context '#render' do
