@@ -8,7 +8,8 @@ describe Cell do
   end
 
   it 'is the cell empty' do
-
+    test_cell = Cell.new("A1")
+    expect(test_cell.empty?).to eq(true)
   end
 
   it '#place_ship(ship)' do
