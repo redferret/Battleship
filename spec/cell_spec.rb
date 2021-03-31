@@ -7,4 +7,35 @@ describe Cell do
     expect(test_cell).to be_instance_of(Cell)
   end
 
+  it 'is the cell empty' do
+
+  end
+
+  it '#place_ship(ship)' do
+
+  end
+
+  it '#fired_upon?' do
+    # fires on cell
+  end
+
+  context '#render' do
+    it 'has not been fired upon' do
+
+    end
+
+    it 'check if fired shot missed' do
+
+    end
+
+    it 'check if fired shot hit' do
+
+    end
+
+    it ' check if fired shot sunk ship' do
+
+    end
+
+  end
+
 end
