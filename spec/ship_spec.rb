@@ -30,5 +30,21 @@ describe Ship do
       expect(test_ship.health).to eq 0
     end
   end
+
+  describe '#sunk?' do
+    it 'returns true if ship is sunk' do
+      test_ship = Ship.new('cruiser', 2)
+
+      test_ship.hit
+      test_ship.hit
+      expect(test_ship.sunk?).to eq true
+    end
+
+    it 'returns false if ship has not sunk' do
+      test_ship = Ship.new('cruiser', 2)
+
+      test_ship.hit
+      expect(test_ship.sunk?).to eq false
+    end
   end
 end
