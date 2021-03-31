@@ -18,5 +18,17 @@ describe Ship do
 
       expect(test_ship.health).to eq 2
     end
+
+    it 'won\'t let health go below 0' do
+      test_ship = Ship.new('cruiser', 2)
+
+      test_ship.hit
+      test_ship.hit
+      expect(test_ship.health).to eq 0
+
+      test_ship.hit
+      expect(test_ship.health).to eq 0
+    end
+  end
   end
 end
