@@ -13,7 +13,10 @@ describe Cell do
   end
 
   it '#place_ship(ship)' do
-
+    # put ships in cell
+    test_cell = Cell.new("A1")
+    test_cell.place_ship("cruiser")
+    expect(test_cell.ship).to eq("cruiser")
   end
 
   it '#fired_upon?' do
