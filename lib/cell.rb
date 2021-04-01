@@ -18,7 +18,22 @@ class Cell
     @ship = ship
   end
 
-  def render(my_board = false)
+  def render(show_ship = false)
+    if fired_upon?
+      if empty?
+        return 'M'
+      else
+        return (ship.sunk?)? 'X' : 'H'
+      end
+    end
+
+    if empty? or (not empty? and not show_ship)
+      return '.'
+    end
+
+    if not empty? and show_ship
+      return 'S'
+    end
   end
 
   def fired_upon?
