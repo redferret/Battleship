@@ -18,12 +18,15 @@ describe Coordinates do
 
   context '#are_diagonal?' do
     it 'tests if the coordinates are diagonal' do
-      coords = Coordinates.new("A1 A2 A3")
+      coords = Coordinates.new("A1 B2 C3")
       expect(coords.are_diagonal?).to eq true
     end
 
     it 'tests if the coordinates are not diagonal' do
       coords = Coordinates.new("A1 B1 C1")
+      expect(coords.are_diagonal?).to eq false
+
+      coords = Coordinates.new("A1 A2 A3")
       expect(coords.are_diagonal?).to eq false
     end
   end
@@ -39,9 +42,10 @@ describe Coordinates do
       expect(coords.are_vertical?).to eq false
     end
   end
+
   context '#horizontal' do
     it 'tests if the coordinates are horizontal' do
-      coords = Coordinates.new("A1 A1 A1")
+      coords = Coordinates.new("A1 A2 A3")
       expect(coords.are_horizontal?).to eq true
     end
 
