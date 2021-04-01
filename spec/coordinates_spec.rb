@@ -15,4 +15,11 @@ describe Coordinates do
       expect(coords.to_a).to eq expected_coords
     end
   end
+  context '#are_diagonal?' do
+    it 'tests if the coordinates are diagonal' do
+      coords = Coordinates.new("A1 A2 A3")
+      expect(coords.are_diagonal?).to eq true
+    end
+
+  end
 end

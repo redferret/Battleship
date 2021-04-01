@@ -3,6 +3,9 @@ class Coordinates
     @coords = coords.split(" ")
   end
 
+  def are_diagonal?
+  end
+
   def to_a
     @coords
   end
