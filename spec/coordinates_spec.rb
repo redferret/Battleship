@@ -39,4 +39,15 @@ describe Coordinates do
       expect(coords.are_vertical?).to eq false
     end
   end
+  context '#horizontal' do
+    it 'tests if the coordinates are horizontal' do
+      coords = Coordinates.new("A1 A1 A1")
+      expect(coords.are_horizontal?).to eq true
+    end
+
+    it 'tests if the coordinates are not horizontal' do
+      coords = Coordinates.new("A1 B1 C1")
+      expect(coords.are_horizontal?).to eq false
+    end
+  end
 end

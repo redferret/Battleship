@@ -16,7 +16,7 @@ class Coordinates
   end
 
   def are_horizontal?
-    false
+  
   end
 
   def to_a
