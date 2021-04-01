@@ -8,7 +8,6 @@ class Coordinates
   end
 
   def are_vertical?
-    false
   end
 
   def are_horizontal?

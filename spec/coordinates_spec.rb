@@ -21,5 +21,15 @@ describe Coordinates do
       expect(coords.are_diagonal?).to eq true
     end
 
+  context '#vertical?' do
+    it 'tests if the coordinates are vertical' do
+      coords = Coordinates.new("A1 B1 C1")
+      expect(coords.are_vertical?).to eq true
+    end
+
+    it 'tests if the coordinates are not vertical' do
+      coords = Coordinates.new("A1 B1 C1")
+      expect(coords.are_vertical?).to eq false
+    end
   end
 end
