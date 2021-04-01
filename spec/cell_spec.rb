@@ -1,22 +1,27 @@
 require 'rspec'
 require './lib/cell'
+require './lib/ship'
 
 describe Cell do
   it 'exists' do
     test_cell = Cell.new("A1")
-    expect(test_cell).to be_instance_of(Cell)
+    expect(test_cell).to be_instance_of Cell
   end
 
-  it 'is the cell empty' do
-    test_cell = Cell.new("A1")
-    expect(test_cell.empty?).to eq(true)
-  end
+  context '#place_ship' do
+    it 'is the cell empty' do
+      test_cell = Cell.new("A1")
+      expect(test_cell.empty?).to eq true
+    end
 
-  it '#place_ship(ship)' do
-    # put ships in cell
-    test_cell = Cell.new("A1")
-    test_cell.place_ship("cruiser")
-    expect(test_cell.ship).to eq("cruiser")
+    it '#place_ship(ship)' do
+      # put ships in cell
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 2)
+      test_cell.place_ship(ship)
+      expect(test_cell.ship).to eq(ship)
+      expect(test_cell.empty?).to eq false
+    end
   end
 
   it '#fired_upon?' do
