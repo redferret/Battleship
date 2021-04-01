@@ -24,7 +24,12 @@ class Coordinates
   end
 
   def intersects?(coords)
-
+    coords_a = coords.to_a
+    for index in (0..@coords.length) do
+      coord = @coords[index]
+      return true if coords_a.include?(coord)
+    end
+    false
   end
 
   def to_a
