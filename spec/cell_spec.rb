@@ -25,11 +25,24 @@ describe Cell do
     expect(test_cell.fired_upon?).to eq(false)
   end
 
-  it '#fire_upon' do
-    test_cell = Cell.new("A1")
-    expect(test_cell.fired_upon?).to eq(false)
-    test_cell.fire_upon
-    expect(test_cell.fired_upon?).to eq(true)
+  context '#fire_upon' do
+    it 'marks this cell as fired upon' do
+      test_cell = Cell.new("A1")
+
+      expect(test_cell.fired_upon?).to eq(false)
+      test_cell.fire_upon
+      expect(test_cell.fired_upon?).to eq(true)
+    end
+    it 'hits a ship if there is a ship' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 2)
+
+      test_cell.place_ship(ship)
+
+      test_cell.fire_upon
+
+      expect(test_cell.ship.health).to eq 1
+    end
   end
 
   context '#render' do
