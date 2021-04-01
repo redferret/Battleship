@@ -42,6 +42,9 @@ class Cell
 
   def fire_upon
     @fired_upon = true
+    if not empty?
+      @ship.hit
+    end
   end
 
 end
