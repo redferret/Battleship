@@ -4,6 +4,15 @@ class Coordinates
   end
 
   def are_diagonal?
+    not are_vertical? and not are_horizontal?
+  end
+
+  def are_vertical?
+    false
+  end
+
+  def are_horizontal?
+    false
   end
 
   def to_a
