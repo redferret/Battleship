@@ -50,4 +50,24 @@ describe Coordinates do
       expect(coords.are_horizontal?).to eq false
     end
   end
+
+  context '#intersects?' do
+    it 'tests if coordinates are intersecting' do
+      coords_1 = Coordinates.new("A1 A2 A3")
+      coords_2 = Coordinates.new("A2 B2 C2")
+
+      intersection = coords_1.intersects?(coords_2)
+
+      expect(intersection).to eq true
+    end
+
+    it 'tests if coordinates are not intersecting' do
+      coords_1 = Coordinates.new("A1 A2 A3")
+      coords_2 = Coordinates.new("B2 C2 D2")
+
+      intersection = coords_1.intersects?(coords_2)
+
+      expect(intersection).to eq false
+    end
+  end
 end

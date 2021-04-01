@@ -23,7 +23,8 @@ class Coordinates
     y_coords.uniq.length == 1
   end
 
-  
+  def intersects?(coords)
+
   end
 
   def to_a
