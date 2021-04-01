@@ -16,6 +16,13 @@ class Coordinates
   end
 
   def are_horizontal?
+    expected_length = @coords.length
+    y_coords = @coords.map do |coord|
+      coord[0]
+    end
+    y_coords.uniq.length == 1
+  end
+
   
   end
 
