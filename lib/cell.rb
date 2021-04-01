@@ -18,7 +18,7 @@ class Cell
     @ship = ship
   end
 
-  def render
+  def render(my_board = false)
   end
 
   def fired_upon?

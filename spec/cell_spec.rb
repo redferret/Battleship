@@ -47,21 +47,43 @@ describe Cell do
 
   context '#render' do
     it 'has not been fired upon' do
-
+      test_cell = Cell.new("A1")
+      actual = test_cell.render
+      expected = '.'
+      expect(actual).to eq expected
     end
 
     it 'check if fired shot missed' do
-
+      test_cell = Cell.new("A1")
+      test_cell.fire_upon
+      actual = test_cell.render
+      expected = 'M'
+      expect(actual).to eq expected
     end
 
-    it 'check if fired shot hit' do
+    it 'check if fired shot hit ship' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 2)
+      test_cell.place_ship(ship)
 
+      test_cell.fire_upon
+
+      actual = test_cell.render
+      expected = 'H'
+      expect(actual).to eq expected
     end
 
     it ' check if fired shot sunk ship' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 1)
+      test_cell.place_ship(ship)
 
+      test_cell.fire_upon
+
+      actual = test_cell.render
+      expected = 'X'
+      expect(actual).to eq expected
     end
-
   end
 
 end
