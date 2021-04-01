@@ -51,6 +51,10 @@ describe Cell do
       actual = test_cell.render
       expected = '.'
       expect(actual).to eq expected
+
+      actual = test_cell.render(true)
+      expected = '.'
+      expect(actual).to eq expected
     end
 
     it 'check if fired shot missed' do
@@ -82,6 +86,20 @@ describe Cell do
 
       actual = test_cell.render
       expected = 'X'
+      expect(actual).to eq expected
+    end
+
+    it 'shows the ship if render(true)' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 1)
+      test_cell.place_ship(ship)
+
+      actual = test_cell.render
+      expected = '.'
+      expect(actual).to eq expected
+
+      actual = test_cell.render(true)
+      expected = 'S'
       expect(actual).to eq expected
     end
   end
