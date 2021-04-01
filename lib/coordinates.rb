@@ -8,6 +8,11 @@ class Coordinates
   end
 
   def are_vertical?
+    expected_length = @coords.length
+    x_coords = @coords.map do |coord|
+      coord[1..-1].to_i
+    end
+    x_coords.uniq.length == 1
   end
 
   def are_horizontal?

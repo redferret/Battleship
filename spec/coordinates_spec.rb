@@ -28,7 +28,7 @@ describe Coordinates do
     end
 
     it 'tests if the coordinates are not vertical' do
-      coords = Coordinates.new("A1 B1 C1")
+      coords = Coordinates.new("A1 A2 A3")
       expect(coords.are_vertical?).to eq false
     end
   end
