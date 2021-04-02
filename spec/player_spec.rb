@@ -33,4 +33,14 @@ describe Player do
       }.to raise_error(NotImplementedError)
     end
   end
+
+  context '#take_turn' do
+    it 'raises NotImplementedError if the method is not implemented' do
+      board = double('board')
+      player = Player.new(board)
+      expect{
+        player.take_turn
+      }.to raise_error(NotImplementedError)
+    end
+  end
 end

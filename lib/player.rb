@@ -7,6 +7,9 @@ class Player
     raise NotImplementedError, "A player needs to be able to place ships"
   end
 
+  def take_turn
+  end
+
   def render_board
     @board.render
   end
