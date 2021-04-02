@@ -1,48 +1,53 @@
 class Coordinates
-  def initialize(coords)
-    @coords = coords.split(" ")
+  def self.diagonal?(coordinates)
+    not_vertical?(coordinates) and not_horizontal?(coordinates)
   end
 
-  def are_diagonal?
-    not are_vertical? and not are_horizontal?
-  end
-
-  def are_vertical?
-    expected_length = @coords.length
-    y_coords = @coords.map do |coord|
+  def self.vertical?(coordinates)
+    y_coords = coordinates.map do |coord|
       coord[1..-1].to_i
     end
     y_coords.uniq.length == 1
   end
 
-  def are_horizontal?
-    expected_length = @coords.length
-    x_coords = @coords.map do |coord|
+  def self.not_vertical?(coordinates)
+    not vertical?(coordinates)
+  end
+
+  def self.horizontal?(coordinates)
+    x_coords = coordinates.map do |coord|
       coord[0]
     end
     x_coords.uniq.length == 1
   end
 
-  def intersects?(coords)
-    coords_a = coords.to_a
-    for index in (0..@coords.length) do
-      coord = @coords[index]
-      return true if coords_a.include?(coord)
-    end
-    false
+  def self.not_horizontal?(coordinates)
+    not horizontal?(coordinates)
   end
 
-  def are_consecutive?
-    if not are_diagonal?
-      if are_horizontal?
-        y_coords = @coords.map do |coord|
+  def self.intersects?(coords1, coords2)
+    for index in (0..coords1.length) do
+      coord = coords1[index]
+      return true if coords2.include?(coord)
+    end
+    return false
+  end
+
+  def self.not_diagonal?(coordinates)
+    not diagonal?(coordinates)
+  end
+
+  def self.consecutive?(coordinates)
+    if not_diagonal?(coordinates)
+      if horizontal?(coordinates)
+        y_coords = coordinates.map do |coord|
           coord[1..-1].to_i
         end
         return y_coords.each_cons(2).all? do |a, b|
           b == a + 1
         end
       else
-        x_coords = @coords.map do |coord|
+        x_coords = coordinates.map do |coord|
           coord[0].ord
         end
         return x_coords.each_cons(2).all? do |a, b|
@@ -53,7 +58,7 @@ class Coordinates
     return false
   end
 
-  def to_a
-    @coords
+  def self.to_a(coordinates)
+    coordinates.split(" ")
   end
 end
