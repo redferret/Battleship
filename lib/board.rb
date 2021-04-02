@@ -27,7 +27,25 @@ class Board
   def place(ship, coords)
   end
 
-  def render()
-  end
+  def render(show_ship = false)
+    render_string = "  "
+    for x in (1..@size) do
+      render_string.concat("#{x} ")
+    end
+    render_string.concat("\n")
 
-end
+    values = @cells.values
+    rows = values.each_slice(@size)
+    x = 1
+    rows.each do |row|
+      render_string.concat((x + 64).chr)
+      render_string.concat(" ")
+      row.each do |cell|
+        render_string.concat(cell.render)
+        render_string.concat(" ")
+      end
+      render_string.concat("\n")
+      x += 1
+    end
+    render_string
+  end
