@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/ship'
 
 describe Ship do
-  describe '#initialize' do
+  context '#initialize' do
     before :each do
       @test_ship = Ship.new('cruiser', 3)
     end
@@ -25,7 +25,7 @@ describe Ship do
 
   end
 
-  describe '#hit' do
+  context '#hit' do
     before :each do
       @test_ship = Ship.new('cruiser', 2)
     end
@@ -48,7 +48,7 @@ describe Ship do
     end
   end
 
-  describe '#sunk?' do
+  context '#sunk?' do
     it 'tests if ship is sunk or not' do
       test_ship = Ship.new('cruiser', 2)
 
