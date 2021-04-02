@@ -8,15 +8,13 @@ class Board
   def initialize(size = 4)
     @cells = {}
 
-    for row in (1..size) do
+    (1..@size).each do |row|
       x_coord = (row + 64).chr
-
-      for column in (1..size) do
+      (1..@size).each do |column|
         coordinate = "#{x_coord}#{column}"
         @cells[coordinate] = Cell.new(coordinate)
       end
     end
-
   end
 
   def valid_placement?(ship, coords)
