@@ -75,3 +75,19 @@ describe Board do
       expect(board.valid_placement?(cruiser, coords_2)).to eq true
 
     end
+  context '#place' do
+    it 'place ship at given coordinates' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      coordinates = Coordinates.new("A1 A2 A3")
+      board.place(cruiser, coordinates)
+      cell_1 = board.cells["A1"]
+      cell_2 = board.cells["A2"]
+      cell_3 = board.cells["A3"]
+
+      expect(cell_1.ship).to eq(cell_2.ship)
+      expect(cell_1.ship).to eq(cell_3.ship)
+      expect(cell_2.ship).to eq(cell_3.ship)
+      expect(cell_1.ship).not_to eq(cell_4.ship)
+      expect(valid_placement?(cruiser, coordinates)).to eq true
+    end
