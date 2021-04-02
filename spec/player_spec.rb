@@ -1,4 +1,5 @@
 require './lib/player.rb'
+# require './lib/board.rb'
 require 'rspec'
 
 describe Player do
@@ -9,8 +10,9 @@ describe Player do
       expect(player).to be_instance_of Player
     end
   end
+
   context '#render_board' do
-    it 'has a board' do
+    it 'has a board and calls render on it' do
       test_string = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
 
       board = double('board')
