@@ -91,3 +91,23 @@ describe Board do
       expect(cell_1.ship).not_to eq(cell_4.ship)
       expect(valid_placement?(cruiser, coordinates)).to eq true
     end
+
+    it 'check overlap of ship placement' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      coordinates_1 = Coordinates.new("A1 A2 A3")
+      board.place(cruiser, coordinates_1)
+      cell_1 = board.cells["A1"]
+      cell_2 = board.cells["A2"]
+      cell_3 = board.cells["A3"]
+
+      submarine = Ship.new("Submarine", 3)
+      coordinates_2 = Coordinates.new("A1 B1 C1")
+      board.place(submarine, coorinates_2)
+      cell_4 = board.cells["A1"]
+      cell_5 = board.cells["B1"]
+      cell_6 = board.cells["C1"]
+
+      expect(valid_placement?(submarine, coorinates_2)).to eq false
+    end
+  end
