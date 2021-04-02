@@ -61,3 +61,17 @@ describe Board do
 
       expect(board.valid_placement?(submarine, coords_4)).to eq false
     end
+
+    it 'make sure ship coordinates are not diagonal' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      coords_1 = Coordinates.new("A1 B2 C3").to_a
+
+      expect(board.valid_placement?(cruiser, coords_1)).to eq false
+
+      submarine = Ship.new("Submarine", 3)
+      coords_2 = Coordinates.new("A1 B1 C1").to_a
+
+      expect(board.valid_placement?(cruiser, coords_2)).to eq true
+
+    end
