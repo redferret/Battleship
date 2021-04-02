@@ -8,6 +8,7 @@ class Player
   end
 
   def take_turn
+    raise NotImplementedError, "A player needs to be able to take a turn"
   end
 
   def render_board
