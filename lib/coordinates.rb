@@ -9,18 +9,18 @@ class Coordinates
 
   def are_vertical?
     expected_length = @coords.length
-    x_coords = @coords.map do |coord|
+    y_coords = @coords.map do |coord|
       coord[1..-1].to_i
     end
-    x_coords.uniq.length == 1
+    y_coords.uniq.length == 1
   end
 
   def are_horizontal?
     expected_length = @coords.length
-    y_coords = @coords.map do |coord|
+    x_coords = @coords.map do |coord|
       coord[0]
     end
-    y_coords.uniq.length == 1
+    x_coords.uniq.length == 1
   end
 
   def intersects?(coords)
