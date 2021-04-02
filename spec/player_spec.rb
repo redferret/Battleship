@@ -23,4 +23,14 @@ describe Player do
       expect(player.render_board).to eq test_string
     end
   end
+
+  context '#place_ships' do
+    it 'raises NotImplementedError if the method is not implemented' do
+      board = double('board')
+      player = Player.new(board)
+      expect{
+        player.place_ships
+      }.to raise_error(NotImplementedError)
+    end
+  end
 end
