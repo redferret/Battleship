@@ -1,4 +1,4 @@
-require './lib/player.rb'
+require './lib/player'
 require 'rspec'
 
 describe Player do
