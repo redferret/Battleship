@@ -33,6 +33,24 @@ class Coordinates
   end
 
   def are_consecutive?
+    if not are_diagonal?
+      if are_horizontal?
+        y_coords = @coords.map do |coord|
+          coord[1..-1].to_i
+        end
+        return y_coords.each_cons(2).all? do |a, b|
+          b == a + 1
+        end
+      else
+        x_coords = @coords.map do |coord|
+          coord[0].ord
+        end
+        return x_coords.each_cons(2).all? do |a, b|
+          b == a + 1
+        end
+      end
+    end
+    return false
   end
 
   def to_a
