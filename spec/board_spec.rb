@@ -118,13 +118,13 @@ describe Board do
     it 'render default board' do
       board = Board.new
       board.render
-      expected = "  1 2 3 4 \n
-                  A . . . . \n
-                  B . . . . \n
-                  C . . . . \n
-                  D . . . . \n"
+      expected = "  1 2 3 4 \n" +
+                 "A . . . . \n" +
+                 "B . . . . \n" +
+                 "C . . . . \n" +
+                 "D . . . . \n"
 
-      expected(board.render).to eq(expected)
+      expect(board.render).to eq(expected)
     end
 
     it 'render human players board' do
