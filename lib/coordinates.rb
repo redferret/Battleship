@@ -32,6 +32,9 @@ class Coordinates
     false
   end
 
+  def are_consecutive?
+  end
+
   def to_a
     @coords
   end

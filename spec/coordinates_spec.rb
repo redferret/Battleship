@@ -74,4 +74,16 @@ describe Coordinates do
       expect(intersection).to eq false
     end
   end
+
+  context '#are_consecutive' do
+    it 'tests that the coordinates are consecutive' do
+      coords = Coordinates.new("A1 A2 A3")
+      expect(coords.are_consecutive?).to eq true
+    end
+
+    it 'tests that the coordinates are not consecutive' do
+      coords = Coordinates.new("A1 A3")
+      expect(coords.are_consecutive?).to eq false
+    end
+  end
 end
