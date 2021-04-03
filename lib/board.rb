@@ -24,7 +24,12 @@ class Board
   end
 
   def place(ship, coords)
-  end
+    cells = @cells.values
+    cells.each do |cell|
+      coords.each do |coord|
+        if cell.coordinate == coord
+          cell.place_ship(ship)
+        end
 
   def render(show_ship = false)
     render_string = "  "
