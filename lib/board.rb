@@ -7,6 +7,7 @@ class Board
 
   def initialize(size = 4)
     @cells = {}
+    @size = size
 
     (1..@size).each do |row|
       x_coord = (row + 64).chr
