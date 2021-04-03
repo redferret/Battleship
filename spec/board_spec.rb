@@ -97,11 +97,10 @@ describe Board do
     it 'check overlap of ships placement' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
-      coords_1 = Coordinates.to_a("A1 A2 A3")
-      board.place(cruiser, coords_1)
-      cell_1 = board.cells["A1"]
-      cell_2 = board.cells["A2"]
-      cell_3 = board.cells["A3"]
+      board.place(cruiser, ["A1", "A2", "A3"])
+
+      expect(board.overlap?(["A1", "B1", "C1"])).to eq true
+    end
 
       submarine = Ship.new("Submarine", 3)
       coords_2 = Coordinates.to_a("A1 B1 C1")
