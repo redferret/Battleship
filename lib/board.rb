@@ -57,7 +57,7 @@ class Board
       render_string.concat((x + 64).chr)
       render_string.concat(" ")
       row.each do |cell|
-        render_string.concat(cell.render)
+        render_string.concat(cell.render(show_ship))
         render_string.concat(" ")
       end
       render_string.concat("\n")
@@ -65,3 +65,5 @@ class Board
     end
     render_string
   end
+
+end
