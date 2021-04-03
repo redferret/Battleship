@@ -136,21 +136,17 @@ describe Board do
       expect(board.render).to eq(expected)
     end
 
-    it 'render human players board' do
+    it 'render with ships on the board' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       coords_1 = Coordinates.to_a("A1 A2 A3")
       board.place(cruiser, coords_1)
-      cell_1 = board.cells["A1"]
-      cell_2 = board.cells["A2"]
-      cell_3 = board.cells["A3"]
-      board.render(true)
 
-      expected = "  1 2 3 4 \n
-                  A S S S . \n
-                  B . . . . \n
-                  C . . . . \n
-                  D . . . . \n"
+      expected = "  1 2 3 4 \n" +
+                 "A S S S . \n" +
+                 "B . . . . \n" +
+                 "C . . . . \n" +
+                 "D . . . . \n"
 
       expect(board.render(true)).to eq(expected)
     end
