@@ -82,16 +82,16 @@ describe Board do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       coords = Coordinates.to_a("A1 A2 A3")
-      board.place(cruiser, coordinates)
+      board.place(cruiser, coords)
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
+      cell_4 = board.cells["A4"]
 
       expect(cell_1.ship).to eq(cell_2.ship)
       expect(cell_1.ship).to eq(cell_3.ship)
       expect(cell_2.ship).to eq(cell_3.ship)
-      expect(cell_1.ship).not_to eq(cell_4.ship)
-      expect(valid_placement?(cruiser, coords)).to eq true
+      expect(cell_3.ship == cell_4.ship).to eq false
     end
 
     it 'check overlap of ships placement' do
