@@ -32,6 +32,10 @@ class Board
         if cell.coordinate == coord
           cell.place_ship(ship)
         end
+      end
+    end
+  end
+
   def overlap?(coords)
     values = @cells.values
     cells_with_ships = values.find_all do |cell|
