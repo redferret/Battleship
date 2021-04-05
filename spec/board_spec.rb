@@ -76,6 +76,7 @@ describe Board do
       expect(board.valid_placement?(cruiser, coords_2)).to eq true
 
     end
+  end
 
   context '#place' do
     it 'place ship at given coordinates' do
