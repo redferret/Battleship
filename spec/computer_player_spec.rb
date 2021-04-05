@@ -73,4 +73,18 @@ describe ComputerPlayer do
         expect(actual_coordinates).to eq expected_coordinates
       end
     end
+
+    context '#pick_orientation' do
+      it 'picks a random orientation' do
+        board = double('board')
+        computer_player = ComputerPlayer.new(board)
+        actual_orientation = computer_player.pick_orientation
+        possible_orientations = [:horizontal, :vertical]
+
+        test_orientation = possible_orientations.include?(actual_orientation)
+
+        expect(test_orientation).to eq true
+      end
+    end
+
 end
