@@ -12,6 +12,11 @@ describe Ships do
       playable_ships = Ships.new
       expect(playable_ships.ships).not_to eq nil
     end
+
+    it 'populates ships list' do
+      playable_ships = Ships.new
+      expect(playable_ships.ships.length).to eq 5
+    end
   end
 
   context '#get_ship' do
