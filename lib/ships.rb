@@ -10,9 +10,16 @@ class Ships
   PATROLBOAT = :patrolboat
 
   def initialize
-    @ships = []
-    for id in (0..4) do
-      @ships << build_ship(id)
+    @ships = {}
+    ship_keys = [
+      CARRIER,
+      BATTLESHIP,
+      DESTROYER,
+      SUBMARINE,
+      PATROLBOAT
+    ]
+    ship_keys.each do |key|
+      @ships[key] = build_ship(key)
     end
   end
 
