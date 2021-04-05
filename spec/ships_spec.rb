@@ -15,6 +15,14 @@ describe Ships do
   end
 
   context '#get_ship' do
+
+    it 'raises error with invalid id' do
+      ships = Ships.new
+      expect {
+        ships.get_ship(100)
+      }.to raise_error("Unknown ship id: 100")
+    end
+
     it 'returns a ship based on ids' do
       ships = Ships.new
 
