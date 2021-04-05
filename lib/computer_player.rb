@@ -46,6 +46,12 @@ class ComputerPlayer < Player
     end
   end
 
+  def pick_orientation
+    choices = [VERTICAL, HORIZONTAL]
+    choice = rand(2)
+    choices[choice]
+  end
+
   def place_ships
     # 1) Select a random coordinate to place a ship at
     # 2) Get a ship from the Ships class and randomize the orientation
