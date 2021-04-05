@@ -44,22 +44,4 @@ describe ComputerPlayer do
       end
     end
 
-    context '#adjust_coordinate' do
-      it 'makes an adjustment when ship goes over the board' do
-        test_board = double('board')
-        test_ship = double('ship')
-
-        allow(test_board).to receive(:all_valid?).and_return(false)
-        allow(test_board).to receive(:size).and_return(4)
-        allow(test_ship).to receive(:length).and_return(3)
-
-        computer_player = ComputerPlayer.new(test_board)
-
-        test_coordinate = "A3"
-        expected_coordinate = "A2"
-        actual_coordinate = computer_player.adjust_coordinate(test_ship, test_coordinate)
-        
-        expect(actual_coordinate).to eq expected_coordinate
-      end
-    end
 end
