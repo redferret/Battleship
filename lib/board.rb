@@ -75,4 +75,11 @@ class Board
     @cells.keys.include?(coord)
   end
 
+  def all_valid?(given_coords)
+    actual_coords = @cells.keys
+    given_coords.all? do |coord|
+      actual_coords.include?(coord)
+    end
+  end
+
 end
