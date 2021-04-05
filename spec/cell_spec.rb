@@ -41,6 +41,9 @@ describe Cell do
     it 'hits a ship if there is a ship' do
       test_cell = Cell.new("A1")
       ship = Ship.new('cruiser', 2)
+    end
+  end
+
   context '#render_fired_upon' do
     it 'fired upon empty cell and mark M as ship is missed' do
       test_cell = Cell.new("A1")
