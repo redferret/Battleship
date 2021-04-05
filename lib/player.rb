@@ -13,7 +13,7 @@ class Player
     raise NotImplementedError, "A player needs to be able to take a turn"
   end
 
-  def render_board
-    @board.render
+  def render_board(show_ship = false)
+    @board.render(show_ship)
   end
 end
