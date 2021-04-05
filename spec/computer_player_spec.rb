@@ -21,12 +21,6 @@ describe ComputerPlayer do
 
     context '#get_random_coordinate' do
       it 'returns a valid random coordinate' do
-        test_board_cells = {
-          "A1": double('cell1'),
-          "A2": double('cell2'),
-          "B1": double('cell3'),
-          "B2": double('cell4')
-        }
         possible_coordinates = ["A1", "A2", "B1", "B2"]
         board = double('board')
         allow(board).to receive(:size).and_return(2)
