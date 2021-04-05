@@ -20,7 +20,7 @@ describe Ships do
       ships = Ships.new
       expect {
         ships.get_ship(100)
-      }.to raise_error("Unknown ship id: 100")
+      }.to raise_error(ArgumentError, "Unknown ship id: 100")
     end
 
     it 'returns a ship based on ids' do
