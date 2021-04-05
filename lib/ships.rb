@@ -11,7 +11,9 @@ class Ships
 
   def initialize
     @ships = []
-
+    for id in (0..4) do
+      @ships << get_ship(id)
+    end
   end
 
   def get_ship(ship_id)
