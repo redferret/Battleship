@@ -72,6 +72,14 @@ describe Cell do
       expect(actual).to eq expected
     end
   end
+
+  context '#empty_cell?' do
+    it 'show empty cell' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 1)
+      actual = test_cell.empty_cell?(ship)
+
+      expect(actual).to eq true
   end
 
   context '#render' do
