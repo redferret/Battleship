@@ -31,9 +31,8 @@ class Cell
     empty? || ((not empty?) && (not show_ship))
   end
 
-    if not empty? and show_ship
-      return 'S'
-    end
+  def cell_has_ship?(show_ship)
+    not empty? && show_ship
   end
 
   def fired_upon?
