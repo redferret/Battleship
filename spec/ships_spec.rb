@@ -31,13 +31,21 @@ describe Ships do
     it 'returns a ship based on ids' do
       ships = Ships.new
 
-      expected_names = [
-        'Carrier',
-        'Battleship',
-        'Destroyer',
-        'Submarine',
-        'Patrol Boat'
-      ]
+      expected_names = {
+        carrier: 'Carrier',
+        battleship: 'Battleship',
+        destroyer: 'Destroyer',
+        submarine: 'Submarine',
+        patrolboat: 'Patrol Boat'
+      }
+
+      expected_lengths = {
+        carrier: 5,
+        battleship: 4,
+        destroyer: 3,
+        submarine: 3,
+        patrolboat: 2
+      }
 
       ship_ids = [
         :carrier,
@@ -47,9 +55,7 @@ describe Ships do
         :patrolboat
       ]
 
-      expected_lengths = [5, 4, 3, 3, 2]
-
-      for id in (0..4) do
+      ship_ids.each do |id|
         ship = ships.build_ship(id)
         expected_length = expected_lengths[id]
         expected_name = expected_names[id]
