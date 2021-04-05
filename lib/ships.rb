@@ -27,7 +27,7 @@ class Ships
     when PATROLBOAT
       return Ship.new('Patrol Boat', 2)
     else
-      raise "Unknown ship id: " + ship_id
+      raise ArgumentError, "Unknown ship id: #{ship_id}"
     end
   end
 end
