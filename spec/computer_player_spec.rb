@@ -28,7 +28,7 @@ describe ComputerPlayer do
         }
         possible_coordinates = ["A1", "A2", "B1", "B2"]
         board = double('board')
-        allow(board).to receive(:cells).and_return(test_board_cells)
+        allow(board).to receive(:size).and_return(2)
 
         computer_player = ComputerPlayer.new(board)
         random_coordinate = computer_player.get_random_coordinate
