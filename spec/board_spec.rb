@@ -153,4 +153,12 @@ describe Board do
     end
   end
 
+  it 'check valid coordinate when player takes shot' do
+    board = Board.new
+    actual_1 = board.valid_coordinate?("Z1")
+    expect(actual_1).to eq false
+
+    actual_2 = board.valid_coordinate?("A1")
+    expect(actual_2).to eq true
+  end
 end
