@@ -19,7 +19,7 @@ describe Ships do
     end
   end
 
-  context '#get_ship' do
+  context '#build_ship' do
 
     it 'raises error with invalid id' do
       ships = Ships.new

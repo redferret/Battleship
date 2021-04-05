@@ -12,11 +12,11 @@ class Ships
   def initialize
     @ships = []
     for id in (0..4) do
-      @ships << get_ship(id)
+      @ships << build_ship(id)
     end
   end
 
-  def get_ship(ship_id)
+  def build_ship(ship_id)
     case ship_id
     when CARRIER
       return Ship.new('Carrier', 5)
