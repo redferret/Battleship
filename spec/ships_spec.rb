@@ -24,7 +24,7 @@ describe Ships do
     it 'raises error with invalid id' do
       ships = Ships.new
       expect {
-        ships.get_ship(100)
+        ships.build_ship(100)
       }.to raise_error(ArgumentError, "Unknown ship id: 100")
     end
 
@@ -42,7 +42,7 @@ describe Ships do
       expected_lengths = [5, 4, 3, 3, 2]
 
       for id in (0..4) do
-        ship = ships.get_ship(id)
+        ship = ships.build_ship(id)
         expected_length = expected_lengths[id]
         expected_name = expected_names[id]
 
