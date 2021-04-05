@@ -27,9 +27,9 @@ class Cell
       end
     end
 
-    if empty? or (not empty? and not show_ship)
-      return '.'
-    end
+  def empty_cell?(show_ship)
+    empty? || ((not empty?) && (not show_ship))
+  end
 
     if not empty? and show_ship
       return 'S'
