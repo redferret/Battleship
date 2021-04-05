@@ -1,3 +1,5 @@
+require './lib/board'
+
 class Player
   def initialize(board)
     @board = board
