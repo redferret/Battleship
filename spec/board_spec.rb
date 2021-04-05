@@ -6,7 +6,6 @@ require './lib/coordinates'
 
 describe Board do
   context '#initialize' do
-
     it 'exists' do
       board = Board.new
       expect(board).to be_instance_of(Board)
@@ -22,7 +21,6 @@ describe Board do
 
       expect(board.cells.keys).to eq(expected_cells)
     end
-
   end
 
   context '#valid_placement?' do
@@ -74,7 +72,6 @@ describe Board do
       coords_2 = Coordinates.to_a("A1 B1 C1")
 
       expect(board.valid_placement?(cruiser, coords_2)).to eq true
-
     end
   end
 
@@ -160,5 +157,16 @@ describe Board do
 
     actual_2 = board.valid_coordinate?("A1")
     expect(actual_2).to eq true
+  end
+
+  it 'checks all given coordinates exist on board' do
+    board = Board.new
+    coords_1 = Coordinates.to_a("Z1 Z2 Z3")
+
+    expect(board.all_valid?(coords_1)).to eq false
+
+    coords_2 = Coordinates.to_a("A1 A2 A3")
+
+    expect(board.all_valid?(coords_2)).to eq true
   end
 end
