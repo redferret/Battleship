@@ -27,13 +27,8 @@ class Board
   end
 
   def place(ship, coords)
-    cells = @cells.values
-    cells.each do |cell|
-      coords.each do |coord|
-        if cell.coordinate == coord
-          cell.place_ship(ship)
-        end
-      end
+    coords.each do |coord|
+      @cells[coord].place_ship(ship)
     end
   end
 
