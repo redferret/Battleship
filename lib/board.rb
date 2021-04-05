@@ -3,7 +3,8 @@ require './lib/cell'
 require './lib/coordinates'
 
 class Board
-  attr_reader :cells
+  attr_reader :cells,
+              :size
 
   def initialize(size = 4)
     @cells = {}
