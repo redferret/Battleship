@@ -82,6 +82,21 @@ describe Cell do
       expect(actual).to eq true
   end
 
+  context '#cell_has_ship?(show_ship)' do
+    it 'cell has ship on it' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 1)
+      actual_1 = test_cell.cell_has_ship?(ship)
+
+      expect(actual_1).to eq false
+
+      test_cell.place_ship(ship)
+      actual_2 = test_cell.cell_has_ship?(ship)
+
+      expect(actual_2).to eq true
+    end
+  end
+
   context '#render' do
     it 'has not been fired upon' do
       test_cell = Cell.new("A1")
