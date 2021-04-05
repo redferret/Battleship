@@ -41,12 +41,67 @@ describe Cell do
     it 'hits a ship if there is a ship' do
       test_cell = Cell.new("A1")
       ship = Ship.new('cruiser', 2)
-
       test_cell.place_ship(ship)
-
       test_cell.fire_upon
 
       expect(test_cell.ship.health).to eq 1
+    end
+  end
+
+  context '#render_fired_upon' do
+    it 'fired upon empty cell and mark M as ship is missed' do
+      test_cell = Cell.new("A1")
+      actual = test_cell.render_fired_upon
+      expected = 'M'
+
+      expect(actual).to eq expected
+    end
+
+    it 'fired upon ship and mark H as ship is hit' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 2)
+      test_cell.place_ship(ship)
+      test_cell.fire_upon
+
+      actual = test_cell.render_fired_upon
+      expected = 'H'
+      expect(actual).to eq expected
+    end
+
+    it 'fired upon ship and mark X as ship is sunk' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 1)
+      test_cell.place_ship(ship)
+      test_cell.fire_upon
+
+      actual = test_cell.render_fired_upon
+      expected = 'X'
+      expect(actual).to eq expected
+    end
+  end
+
+  context '#empty_cell?' do
+    it 'show empty cell' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 1)
+      actual = test_cell.empty_cell?(ship)
+
+      expect(actual).to eq true
+  end
+  end
+
+  context '#cell_has_ship?(show_ship)' do
+    it 'cell has ship on it' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 1)
+      actual_1 = test_cell.cell_has_ship?(ship)
+
+      expect(actual_1).to eq false
+
+      test_cell.place_ship(ship)
+      actual_2 = test_cell.cell_has_ship?(ship)
+
+      expect(actual_2).to eq true
     end
   end
 

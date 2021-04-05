@@ -19,21 +19,28 @@ class Cell
   end
 
   def render(show_ship = false)
-    if fired_upon?
-      if empty?
-        return 'M'
-      else
-        return (ship.sunk?)? 'X' : 'H'
-      end
-    end
+    return render_fired_upon if fired_upon?
 
-    if empty? or (not empty? and not show_ship)
-      return '.'
-    end
+    return '.' if empty_cell?(show_ship)
 
-    if not empty? and show_ship
-      return 'S'
+    return 'S' if cell_has_ship?(show_ship)
+
+  end
+
+  def render_fired_upon
+    if empty?
+      return 'M'
+    else
+      return (@ship.sunk?)? 'X' : 'H'
     end
+  end
+
+  def empty_cell?(show_ship)
+    empty? || ((not empty?) && (not show_ship))
+  end
+
+  def cell_has_ship?(show_ship)
+    not empty? && show_ship
   end
 
   def fired_upon?
