@@ -17,15 +17,15 @@ class Ships
   def get_ship(ship_id)
     case ship_id
     when CARRIER
-      return new Ship('Carrier', 5)
+      return Ship.new('Carrier', 5)
     when BATTLESHIP
-      return new Ship('Battleship', 4)
+      return Ship.new('Battleship', 4)
     when DESTROYER
-      return new Ship('Destroyer', 3)
+      return Ship.new('Destroyer', 3)
     when SUBMARINE
-      return new Ship('Submarine', 3)
+      return Ship.new('Submarine', 3)
     when PATROLBOAT
-      return new Ship('Patrol Boat', 2)
+      return Ship.new('Patrol Boat', 2)
     else
       raise "Unknown ship id: " + ship_id
     end
