@@ -41,6 +41,10 @@ describe Cell do
     it 'hits a ship if there is a ship' do
       test_cell = Cell.new("A1")
       ship = Ship.new('cruiser', 2)
+      test_cell.place_ship(ship)
+      test_cell.fire_upon
+
+      expect(test_cell.ship.health).to eq 1
     end
   end
 
@@ -83,6 +87,7 @@ describe Cell do
       actual = test_cell.empty_cell?(ship)
 
       expect(actual).to eq true
+  end
   end
 
   context '#cell_has_ship?(show_ship)' do
