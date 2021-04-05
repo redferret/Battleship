@@ -1,4 +1,5 @@
 require './lib/computer_player'
+require './lib/ships'
 require 'rspec'
 
 describe ComputerPlayer do
@@ -36,6 +37,16 @@ describe ComputerPlayer do
         is_correct_coordinate = possible_coordinates.include?(random_coordinate)
 
         expect(is_correct_coordinate).to eq true
+      end
+    end
+
+    context '#get_ship' do
+      it 'grabs a ship with the given id' do
+        test_board = double('board')
+        computer_player = ComputerPlayer.new(test_board)
+
+        actual_ship = computer_player.get_ship(:battleship)
+        expect(actual_ship.name).to eq 'Battleship'
       end
     end
 end
