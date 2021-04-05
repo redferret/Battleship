@@ -1,4 +1,5 @@
 require './lib/player'
+require './lib/ships'
 
 class ComputerPlayer < Player
   attr_reader :board
