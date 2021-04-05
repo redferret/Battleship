@@ -41,13 +41,21 @@ describe Cell do
     it 'hits a ship if there is a ship' do
       test_cell = Cell.new("A1")
       ship = Ship.new('cruiser', 2)
+  context '#render_fired_upon' do
+    it 'fired upon empty cell and mark M as ship is missed' do
+      test_cell = Cell.new("A1")
+      actual = test_cell.render_fired_upon
+      expected = 'M'
 
+      expect(actual).to eq expected
+    end
       test_cell.place_ship(ship)
 
       test_cell.fire_upon
 
       expect(test_cell.ship.health).to eq 1
     end
+  end
   end
 
   context '#render' do
