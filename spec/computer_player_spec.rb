@@ -44,4 +44,33 @@ describe ComputerPlayer do
       end
     end
 
+    context '#make_coordinates_for_ship' do
+      it 'produces a collection of coordinates if horizontal' do
+        board = double('board')
+        computer_player = ComputerPlayer.new(board)
+
+        test_ship = double('ship')
+        allow(test_ship).to receive(:length).and_return(3)
+        test_coordinate = "A1"
+
+        actual_coordinates = computer_player.make_coordinates_for_ship(test_ship, test_coordinate, :horizontal)
+        expected_coordinates = ["A1", "A2", "A3"]
+
+        expect(actual_coordinates).to eq expected_coordinates
+      end
+
+      it 'produces a collection of coordinates if vertical' do
+        board = double('board')
+        computer_player = ComputerPlayer.new(board)
+
+        test_ship = double('ship')
+        allow(test_ship).to receive(:length).and_return(3)
+        test_coordinate = "A1"
+
+        actual_coordinates = computer_player.make_coordinates_for_ship(test_ship, test_coordinate, :vertical)
+        expected_coordinates = ["A1", "B1", "C1"]
+
+        expect(actual_coordinates).to eq expected_coordinates
+      end
+    end
 end
