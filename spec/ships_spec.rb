@@ -39,6 +39,14 @@ describe Ships do
         'Patrol Boat'
       ]
 
+      ship_ids = [
+        :carrier,
+        :battleship,
+        :destroyer,
+        :submarine,
+        :patrolboat
+      ]
+
       expected_lengths = [5, 4, 3, 3, 2]
 
       for id in (0..4) do

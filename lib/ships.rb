@@ -3,11 +3,11 @@ require './lib/ship'
 class Ships
   attr_reader :ships
 
-  CARRIER = 0
-  BATTLESHIP = 1
-  DESTROYER = 2
-  SUBMARINE = 3
-  PATROLBOAT = 4
+  CARRIER = :carrier
+  BATTLESHIP = :battleship
+  DESTROYER = :destroyer
+  SUBMARINE = :submarine
+  PATROLBOAT = :patrolboat
 
   def initialize
     @ships = []
