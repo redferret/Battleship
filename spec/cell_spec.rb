@@ -60,9 +60,16 @@ describe Cell do
       expected = 'H'
       expect(actual).to eq expected
     end
+
+    it 'fired upon ship and mark X as ship is sunk' do
+      test_cell = Cell.new("A1")
+      ship = Ship.new('cruiser', 1)
+      test_cell.place_ship(ship)
       test_cell.fire_upon
 
-      expect(test_cell.ship.health).to eq 1
+      actual = test_cell.render_fired_upon
+      expected = 'X'
+      expect(actual).to eq expected
     end
   end
   end
