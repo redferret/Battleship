@@ -53,18 +53,24 @@ class ComputerPlayer < Player
   end
 
   def place_ships
-    # 1) Select a random coordinate to place a ship at
-    # 2) Get a ship from the Ships class and randomize the orientation
-    #   a) make sure that the current ship being placed that it's length
-    #      is not going to go over the board's edge, us all_valid?
-    #   b) if all_valid? fails return to step 1)
-    # 3) Attempt to place the ship on the board
-    # 4) If it fails try again by going back to step 1)
+    ships_to_place = @computer_ships.ships
+    ships_to_place.each do |ship|
+      loop do
+        break if try_to_place_ship(ship)
+      end
+    end
+  end
 
-    # Methods involved from this class:
-    # get_random_coordinate
-    # get_ship(ship_id)
-    # make_coordinates_for_ship(ship, coordinate, orientation)
+  def try_to_place_ship(ship)
+    place_at_coordinate = get_random_coordinate
+    orientation = pick_orientation
+    coordinates = make_coordinates_for_ship(ship, place_at_coordinate, orientation)
+
+    if @board.valid_placement?(ship, coordinates)
+      @board.place(ship, coordinates)
+      return true
+    end
+    return false
   end
 
   def take_turn
