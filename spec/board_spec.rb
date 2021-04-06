@@ -163,4 +163,21 @@ describe Board do
 
     expect(board.all_valid?(coords_2)).to eq true
   end
+
+  context '#get_cell_at' do
+    it 'returns a cell if it exists' do
+      board = Board.new
+      actual_cell = board.get_cell_at("A1")
+      expect(actual_cell.coordinate).to eq "A1"
+    end
+  end
+
+  context '#fire_upon' do
+    it 'fires on a cell that is empty' do
+      board = Board.new
+      board.fire_upon("A1")
+      actual_cell = board.get_cell_at("A1")
+      expect(actual_cell.fired_upon?).to eq true
+    end
+  end
 end
