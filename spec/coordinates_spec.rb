@@ -1,5 +1,6 @@
 require 'rspec'
-require './lib/coordinates.rb'
+require './lib/coordinates'
+require './lib/board'
 
 describe Coordinates do
   context '#diagonal?' do
@@ -49,21 +50,25 @@ describe Coordinates do
 
   context '#intersects?' do
     it 'tests if coordinates are intersecting' do
+      board = Board.new
       coords_1 = Coordinates::to_a("A1 A2 A3")
-      coords_2 = Coordinates::to_a("A2 B2 C2")
+      cruiser = Ship.new("Cruiser", 3)
+      board.place(cruiser, ["A1", "A2", "A3"])
+      all_cells = board.cells.values
 
-      intersection = Coordinates::intersects?(coords_1, coords_2)
+      intersection = Coordinates::intersects?(coords_1, all_cells)
 
       expect(intersection).to eq true
     end
 
     it 'tests if coordinates are not intersecting' do
+      board = Board.new
       coords_1 = Coordinates::to_a("A1 A2 A3")
-      coords_2 = Coordinates::to_a("B2 C2 D2")
+      all_cells = board.cells.values
 
-      intersection = Coordinates::intersects?(coords_1, coords_2)
+      intersection = Coordinates::not_intersects?(coords_1, all_cells)
 
-      expect(intersection).to eq false
+      expect(intersection).to eq true
     end
   end
 

@@ -23,23 +23,13 @@ class Board
     ship.length == coords.length &&
       Coordinates.consecutive?(coords) &&
       Coordinates.not_diagonal?(coords) &&
-      not(overlap?(coords))
+      Coordinates.not_intersects?(coords, @cells.values) &&
+      all_valid?(coords)
   end
 
   def place(ship, coords)
     coords.each do |coord|
       @cells[coord].place_ship(ship)
-    end
-  end
-
-  def overlap?(coords)
-    values = @cells.values
-    cells_with_ships = values.find_all do |cell|
-      cell if !cell.empty?
-    end
-
-    cells_with_ships.any? do |cell|
-      coords.include?(cell.coordinate)
     end
   end
 
