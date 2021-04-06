@@ -70,16 +70,25 @@ class ComputerPlayer < Player
     return false
   end
 
-  def take_turn
-    # when a computer takes a turn
-    # 1) Randomly pick a coordinate to fire on
-    # 2) if a miss, go back to step 1) on next turn
-    # 3) if a hit remember that location for next turn and goto step 4)
-    # 4) pick 4 of the cells around the remembered hit
-    # 5) if a miss continue searching around the known hit
-    # 6) if a hit is found next to a hit remember that direction and keep
-    #    going for hits until the ship is sunk
-    # 7) once a ship is sunk go back to step 1
-
+  def pick_north_guess(y_coord_part, x_coord_part, other_player_board)
+    guess = "#{((y_coord_part - 1) + 64).chr}#{x_coord_part}"
+    return guess if other_player_board.valid_coordinate?(guess)
   end
+
+  def pick_south_guess(y_coord_part, x_coord_part, other_player_board)
+    guess = "#{((y_coord_part + 1) + 64).chr}#{x_coord_part}"
+    return guess if other_player_board.valid_coordinate?(guess)
+  end
+
+  def pick_east_guess(y_coord_part, x_coord_part, other_player_board)
+    guess = "#{(y_coord_part + 64).chr}#{x_coord_part + 1}"
+    return guess if other_player_board.valid_coordinate?(guess)
+  end
+
+  def pick_west_guess(y_coord_part, x_coord_part, other_player_board)
+    guess = "#{(y_coord_part + 64).chr}#{x_coord_part - 1}"
+    return guess if other_player_board.valid_coordinate?(guess)
+  end
+
+  
 end
