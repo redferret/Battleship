@@ -9,7 +9,7 @@ class Player
     raise NotImplementedError, "A player needs to be able to place ships"
   end
 
-  def take_turn
+  def take_turn(other_player_board)
     raise NotImplementedError, "A player needs to be able to take a turn"
   end
 
