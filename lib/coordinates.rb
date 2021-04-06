@@ -1,3 +1,5 @@
+require './lib/cell'
+
 class Coordinates
   def self.diagonal?(coordinates)
     not_vertical?(coordinates) and not_horizontal?(coordinates)
