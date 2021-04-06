@@ -9,6 +9,7 @@ class ComputerPlayer < Player
   def initialize(board)
     super
     @computer_ships = Ships.new
+    @previous_hit = nil
   end
 
   def get_random_coordinate
@@ -104,5 +105,53 @@ class ComputerPlayer < Player
     end
   end
 
-  
+  def take_turn(other_player_board)
+    if @previous_hit == nil
+      loop do
+        fire_on_coordinate = get_random_coordinate
+        fire_on_cell = other_player_board.cells[fire_on_coordinate]
+
+        if fire_on_cell != nil
+          if not fire_on_cell.fired_upon?
+            fire_on_cell.fire_upon
+
+            if not fire_on_cell.empty?
+              @previous_hit = fire_on_cell
+              set_four_guesses(@previous_hit.coordinate, other_player_board)
+              puts "My shot on #{fire_on_coordinate} was a hit"
+            else
+              puts "My shot on #{fire_on_coordinate} was a miss"
+            end
+            break
+          end
+        end
+      end
+    else
+      loop do
+        next_guess = @guesses.pop
+        fire_on_cell = other_player_board.cells[next_guess]
+
+        if fire_on_cell != nil
+          if not fire_on_cell.fired_upon?
+            fire_on_cell.fire_upon
+            if not fire_on_cell.empty?
+              puts "My shot on #{next_guess} was a hit"
+              if fire_on_cell.ship.sunk?
+                @guesses = []
+              end
+            else
+              puts "My shot on #{next_guess} was a miss"
+            end
+            break
+          end
+        else
+          break
+        end
+      end
+
+      if @guesses.length == 0
+        @previous_hit = nil
+      end
+    end
+  end
 end
