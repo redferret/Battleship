@@ -36,6 +36,9 @@ class Coordinates
       coords.include?(cell.coordinate)
     end
   end
+
+  def self.not_intersects?(coords, all_cells)
+    not intersects?(coords, all_cells)
   end
 
   def self.not_diagonal?(coordinates)
