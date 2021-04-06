@@ -27,16 +27,6 @@ describe ComputerPlayer do
       end
     end
 
-    context '#get_ship' do
-      it 'grabs a ship with the given id' do
-        test_board = double('board')
-        computer_player = ComputerPlayer.new(test_board)
-
-        actual_ship = computer_player.get_ship(:battleship)
-        expect(actual_ship.name).to eq 'Battleship'
-      end
-    end
-
     context '#make_coordinates_for_ship' do
       it 'produces a collection of coordinates if horizontal' do
         board = double('board')
