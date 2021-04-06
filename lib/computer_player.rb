@@ -1,5 +1,5 @@
 require './lib/player'
-require './lib/ships'
+require './lib/ship'
 
 class ComputerPlayer < Player
 
@@ -8,7 +8,7 @@ class ComputerPlayer < Player
 
   def initialize(board)
     super
-    @computer_ships = Ships.new
+    @computer_ships = Ship.get_ships
     @previous_hit = nil
   end
 
@@ -20,7 +20,7 @@ class ComputerPlayer < Player
   end
 
   def get_ship(ship_id)
-    @computer_ships.ships[ship_id]
+    @computer_ships[ship_id]
   end
 
   def make_coordinates_for_ship(ship, coordinate, orientation)

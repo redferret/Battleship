@@ -1,5 +1,4 @@
 require './lib/computer_player'
-require './lib/ships'
 require 'rspec'
 
 describe ComputerPlayer do
