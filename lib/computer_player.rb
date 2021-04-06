@@ -8,7 +8,6 @@ class ComputerPlayer < Player
 
   def initialize(board)
     super
-    @computer_ships = Ship.get_ships
     @previous_hit = nil
   end
 
@@ -17,10 +16,6 @@ class ComputerPlayer < Player
     x_range = rand(1..@board.size)
 
     "#{y_range.chr}#{x_range}"
-  end
-
-  def get_ship(ship_id)
-    @computer_ships[ship_id]
   end
 
   def make_coordinates_for_ship(ship, coordinate, orientation)
@@ -51,8 +46,7 @@ class ComputerPlayer < Player
   end
 
   def place_ships
-    ships_to_place = @computer_ships.ships.values
-    ships_to_place.each do |ship|
+    get_ships.each do |ship|
       loop do
         break if try_to_place_ship(ship)
       end
