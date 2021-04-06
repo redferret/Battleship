@@ -27,12 +27,15 @@ class Coordinates
     not horizontal?(coordinates)
   end
 
-  def self.intersects?(coords1, coords2)
-    for index in (0..coords1.length) do
-      coord = coords1[index]
-      return true if coords2.include?(coord)
+  def self.intersects?(coords, all_cells)
+    cells_with_ships = all_cells.find_all do |cell|
+      cell if not cell.empty?
     end
-    return false
+
+    cells_with_ships.any? do |cell|
+      coords.include?(cell.coordinate)
+    end
+  end
   end
 
   def self.not_diagonal?(coordinates)
