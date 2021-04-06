@@ -173,11 +173,16 @@ describe Board do
   end
 
   context '#fire_upon' do
-    it 'fires on a cell that is empty' do
+    it 'fires on a cell that is not fired on' do
+      board = Board.new
+      result = board.fire_upon("A1")
+      expect(result).to eq true
+    end
+    it 'fires on a cell that is fired on' do
       board = Board.new
       board.fire_upon("A1")
-      actual_cell = board.get_cell_at("A1")
-      expect(actual_cell.fired_upon?).to eq true
+      result = board.fire_upon("A1")
+      expect(result).to eq false
     end
   end
 end

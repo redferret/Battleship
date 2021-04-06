@@ -20,10 +20,11 @@ class Board
   end
 
   def fire_upon(coordinate)
-    if get_cell_at(coordinate)
-      if not get_cell_at(coordinate).fired_upon?
-        @cells[coordinate].fire_upon
-      end
+    if not get_cell_at(coordinate).fired_upon?
+      @cells[coordinate].fire_upon
+      return true
+    else
+      return false
     end
   end
 
