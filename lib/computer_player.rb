@@ -90,5 +90,19 @@ class ComputerPlayer < Player
     return guess if other_player_board.valid_coordinate?(guess)
   end
 
+  def set_four_guesses(other_player_board, coordinate)
+    y_coord_part = coordinate[0].ord - 64
+    x_coord_part = coordinate[1..-1].to_i
+
+    @guesses = [
+      pick_north_guess(y_coord_part, x_coord_part, other_player_board),
+      pick_east_guess(y_coord_part, x_coord_part, other_player_board),
+      pick_south_guess(y_coord_part, x_coord_part, other_player_board),
+      pick_west_guess(y_coord_part, x_coord_part, other_player_board)
+    ].select do |guess|
+      guess != nil
+    end
+  end
+
   
 end
