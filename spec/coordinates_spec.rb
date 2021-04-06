@@ -1,5 +1,6 @@
 require 'rspec'
-require './lib/coordinates.rb'
+require './lib/coordinates'
+require './lib/board'
 
 describe Coordinates do
   context '#diagonal?' do
