@@ -109,7 +109,7 @@ class ComputerPlayer < Player
     if @previous_hit == nil
       loop do
         fire_on_coordinate = get_random_coordinate
-        fire_on_cell = other_player_board.cells[fire_on_coordinate]
+        fire_on_cell = other_player_board.get_cell_at(fire_on_coordinate)
 
         if fire_on_cell != nil
           if not fire_on_cell.fired_upon?
@@ -129,7 +129,7 @@ class ComputerPlayer < Player
     else
       loop do
         next_guess = @guesses.pop
-        fire_on_cell = other_player_board.cells[next_guess]
+        fire_on_cell = other_player_board.get_cell_at(next_guess)
 
         if fire_on_cell != nil
           if not fire_on_cell.fired_upon?
