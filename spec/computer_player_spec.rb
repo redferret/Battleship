@@ -119,4 +119,111 @@ describe ComputerPlayer do
       end
     end
 
+    context '#the_choice_is_a_hit?' do
+      it 'was a hit' do
+        mock_board = double('Board')
+        computer_player = ComputerPlayer.new(mock_board)
+        mock_cell = double('Cell')
+        allow(mock_cell).to receive(:empty?).and_return(false)
+        allow(mock_cell).to receive(:coordinate).and_return("A1")
+        actual_value = computer_player.the_choice_is_a_hit?(mock_cell)
+
+        expect(actual_value).to eq true
+      end
+      it 'was not a hit' do
+        mock_board = double('Board')
+        computer_player = ComputerPlayer.new(mock_board)
+        mock_cell = double('Cell')
+        allow(mock_cell).to receive(:empty?).and_return(true)
+        allow(mock_cell).to receive(:coordinate).and_return("A1")
+        actual_value = computer_player.the_choice_is_a_hit?(mock_cell)
+
+        expect(actual_value).to eq false
+      end
+    end
+
+    context '#cell_was_not_fired_on' do
+      it 'was not fired on yet' do
+        mock_board = double('Board')
+        mock_other_player_board = double('Board')
+        mock_cell = instance_double('Cell', coordinate: "A1")
+        allow(mock_cell).to receive(:fired_upon?).and_return(false)
+        allow(mock_cell).to receive(:fire_upon)
+        allow(mock_cell).to receive(:empty?).and_return(false)
+
+        computer_player = ComputerPlayer.new(mock_board)
+
+        return_value = computer_player.cell_was_not_fired_on?(mock_cell, mock_other_player_board)
+
+        expect(return_value).to eq true
+      end
+      it 'was fired on' do
+        mock_board = double('Board')
+        mock_other_player_board = double('Board')
+        mock_cell = instance_double('Cell', coordinate: "A1")
+        allow(mock_cell).to receive(:fired_upon?).and_return(true)
+        allow(mock_cell).to receive(:fire_upon)
+        allow(mock_cell).to receive(:empty?).and_return(false)
+
+        computer_player = ComputerPlayer.new(mock_board)
+
+        return_value = computer_player.cell_was_not_fired_on?(mock_cell, mock_other_player_board)
+
+        expect(return_value).to eq false
+      end
+    end
+
+    context '#attempt_to_fire_on' do
+      it 'hits a cell successfully' do
+        computer_player = ComputerPlayer.new(double('board'))
+        allow(computer_player).to receive(:cell_was_not_fired_on?).and_return(true)
+
+        mock_other_player_board = double('Board')
+
+        mock_cell = double('Cell#A1')
+        allow(mock_other_player_board).to receive(:get_cell_at).and_return(mock_cell)
+
+        attempt_result = computer_player.attempt_to_fire_on(mock_other_player_board, "A1") do |cell|
+          expect(cell).to eq mock_cell
+        end
+        expect(attempt_result).to eq true
+      end
+      it 'not able to hit the cell' do
+        computer_player = ComputerPlayer.new(double('board'))
+        allow(computer_player).to receive(:cell_was_not_fired_on?).and_return(false)
+
+        mock_other_player_board = double('Board')
+
+        mock_cell = double('Cell#A1')
+        allow(mock_other_player_board).to receive(:get_cell_at).and_return(mock_cell)
+
+        attempt_result = computer_player.attempt_to_fire_on(mock_other_player_board, "A1")
+        expect(attempt_result).to eq false
+      end
+    end
+
+    context '#take_turn' do
+      it 'takes a turn with no previous_hit_made' do
+        computer_player = ComputerPlayer.new(double('board'))
+        allow(computer_player).to receive(:no_previous_hit_made?).and_return(true)
+        allow(computer_player).to receive(:make_a_random_selection)
+        allow(computer_player).to receive(:make_a_guess_around_cell)
+        mock_other_player_board = double('Board')
+
+        computer_player.take_turn(mock_other_player_board)
+        expect(computer_player).to have_received(:make_a_random_selection)
+        expect(computer_player).not_to have_received(:make_a_guess_around_cell)
+      end
+      it 'takes a turn with a previous_hit_made' do
+        computer_player = ComputerPlayer.new(double('board'))
+        allow(computer_player).to receive(:no_previous_hit_made?).and_return(false)
+        allow(computer_player).to receive(:make_a_random_selection)
+        allow(computer_player).to receive(:make_a_guess_around_cell)
+        mock_other_player_board = double('Board')
+
+        computer_player.take_turn(mock_other_player_board)
+        expect(computer_player).not_to have_received(:make_a_random_selection)
+        expect(computer_player).to have_received(:make_a_guess_around_cell)
+      end
+    end
 end
