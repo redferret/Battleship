@@ -105,53 +105,96 @@ class ComputerPlayer < Player
     end
   end
 
-  def take_turn(other_player_board)
-    if @previous_hit == nil
-      loop do
-        fire_on_coordinate = get_random_coordinate
-        fire_on_cell = other_player_board.get_cell_at(fire_on_coordinate)
-
-        if fire_on_cell != nil
-          if not fire_on_cell.fired_upon?
-            fire_on_cell.fire_upon
-
-            if not fire_on_cell.empty?
-              @previous_hit = fire_on_cell
-              set_four_guesses(@previous_hit.coordinate, other_player_board)
-              puts "My shot on #{fire_on_coordinate} was a hit"
-            else
-              puts "My shot on #{fire_on_coordinate} was a miss"
-            end
-            break
-          end
-        end
-      end
+  def the_choice_is_a_hit?(fire_on_cell)
+    if not fire_on_cell.empty?
+      puts "My shot on #{fire_on_cell.coordinate} was a hit"
+      return true
     else
-      loop do
-        next_guess = @guesses.pop
-        fire_on_cell = other_player_board.get_cell_at(next_guess)
+      puts "My shot on #{fire_on_cell.coordinate} was a miss"
+      return false
+    end
+  end
 
-        if fire_on_cell != nil
-          if not fire_on_cell.fired_upon?
-            fire_on_cell.fire_upon
-            if not fire_on_cell.empty?
-              puts "My shot on #{next_guess} was a hit"
-              if fire_on_cell.ship.sunk?
-                @guesses = []
-              end
-            else
-              puts "My shot on #{next_guess} was a miss"
-            end
-            break
-          end
-        else
-          break
-        end
+  def cell_was_not_fired_on?(fire_on_cell, other_player_board)
+    if not fire_on_cell.fired_upon?
+      fire_on_cell.fire_upon
+
+      if the_choice_is_a_hit?(fire_on_cell)
+        yield if block_given?
       end
+      return true
+    end
+    return false
+  end
 
-      if @guesses.length == 0
-        @previous_hit = nil
+  def attempt_to_fire_on(other_player_board, fire_on_coordinate)
+    fire_on_cell = other_player_board.get_cell_at(fire_on_coordinate)
+
+    if fire_on_cell
+      if cell_was_not_fired_on?(fire_on_cell, other_player_board) do
+          yield(fire_on_cell) if block_given?
+        end
+        return true
+      end
+    end
+    return false
+  end
+
+  def make_a_random_selection(other_player_board)
+    loop do
+      fire_on_coordinate = get_random_coordinate
+      break if attempt_to_fire_on(other_player_board, fire_on_coordinate) do |fire_on_cell|
+        remember_previous_hit(fire_on_cell)
+        set_four_guesses(other_player_board, fire_on_coordinate)
       end
     end
   end
+
+  def make_a_guess_around_cell(other_player_board)
+    loop do
+      fire_on_coordinate = @guesses.pop
+      break if not fire_on_coordinate
+      break if attempt_to_fire_on(other_player_board, fire_on_coordinate) do |fire_on_cell|
+        if fire_on_cell.ship.sunk?
+          @guesses = []
+        end
+      end
+    end
+    move_on?
+  end
+
+  def take_turn(other_player_board)
+    if no_previous_hit_made?
+      make_a_random_selection(other_player_board)
+    else
+      make_a_guess_around_cell(other_player_board)
+    end
+  end
+
+  def move_on?
+    if @guesses.length == 0
+      forget_previous_hit
+    end
+  end
+
+  def forget_previous_hit
+    @previous_hit = nil
+  end
+
+  def remember_previous_hit(cell_to_remember)
+    @previous_hit = cell_to_remember
+  end
+
+  def previous_hit_made?
+    @previous_hit != nil
+  end
+
+  def the_previous_hit?
+    @previous_hit
+  end
+
+  def no_previous_hit_made?
+    not previous_hit_made?
+  end
+
 end
