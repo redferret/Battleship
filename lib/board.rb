@@ -19,6 +19,18 @@ class Board
     end
   end
 
+  def fire_upon(coordinate)
+    if get_cell_at(coordinate)
+      if not get_cell_at(coordinate).fired_upon?
+        @cells[coordinate].fire_upon
+      end
+    end
+  end
+
+  def get_cell_at(coordinate)
+    @cells[coordinate]
+  end
+
   def valid_placement?(ship, coords)
     ship.length == coords.length &&
       Coordinates.consecutive?(coords) &&
