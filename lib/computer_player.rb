@@ -29,18 +29,16 @@ class ComputerPlayer < Player
     case orientation
     when HORIZONTAL
       start_y_coord = coordinate[0]
-      number_of_coords = start_x_coord + (ship_length - 1)
       coordinates = []
-      for count in (start_x_coord..number_of_coords) do
-        coordinates << "#{start_y_coord}#{count}"
+      for count in (0...ship_length) do
+        coordinates << "#{start_y_coord}#{count + start_x_coord}"
       end
       return coordinates
     when VERTICAL
       start_y_coord = coordinate[0].ord - 64
-      number_of_coords = start_y_coord + (ship_length - 1)
       coordinates = []
-      for count in (start_y_coord..number_of_coords) do
-        coordinates << "#{(count + 64).chr}#{start_x_coord}"
+      for count in (0...ship_length) do
+        coordinates << "#{(count + 64 + start_y_coord).chr}#{start_x_coord}"
       end
       return coordinates
     end
@@ -53,7 +51,7 @@ class ComputerPlayer < Player
   end
 
   def place_ships
-    ships_to_place = @computer_ships.ships
+    ships_to_place = @computer_ships.ships.values
     ships_to_place.each do |ship|
       loop do
         break if try_to_place_ship(ship)
