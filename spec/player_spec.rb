@@ -38,7 +38,7 @@ describe Player do
       board = double('board')
       player = Player.new(board)
       expect{
-        player.take_turn
+        player.take_turn(nil)
       }.to raise_error(NotImplementedError)
     end
   end
