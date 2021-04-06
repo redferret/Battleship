@@ -62,12 +62,13 @@ describe Coordinates do
     end
 
     it 'tests if coordinates are not intersecting' do
+      board = Board.new
       coords_1 = Coordinates::to_a("A1 A2 A3")
-      coords_2 = Coordinates::to_a("B2 C2 D2")
+      all_cells = board.cells.values
 
-      intersection = Coordinates::intersects?(coords_1, coords_2)
+      intersection = Coordinates::not_intersects?(coords_1, all_cells)
 
-      expect(intersection).to eq false
+      expect(intersection).to eq true
     end
   end
 
