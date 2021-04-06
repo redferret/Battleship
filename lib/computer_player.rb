@@ -153,7 +153,9 @@ class ComputerPlayer < Player
   def make_a_guess_around_cell(other_player_board)
     loop do
       fire_on_coordinate = @guesses.pop
-      break if not fire_on_coordinate
+      if not fire_on_coordinate
+        fire_on_coordinate = get_random_coordinate
+      end
       break if attempt_to_fire_on(other_player_board, fire_on_coordinate) do |fire_on_cell|
         if fire_on_cell.ship.sunk?
           @guesses = []
