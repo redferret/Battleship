@@ -23,7 +23,8 @@ class Board
     ship.length == coords.length &&
       Coordinates.consecutive?(coords) &&
       Coordinates.not_diagonal?(coords) &&
-      not(overlap?(coords))
+      Coordinates.not_intersects?(coords, @cells.values) &&
+      all_valid?(coords)
   end
 
   def place(ship, coords)
