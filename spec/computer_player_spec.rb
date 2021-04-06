@@ -81,4 +81,36 @@ describe ComputerPlayer do
       end
     end
 
+    context '#picking guesses' do
+      before :each do
+        coordinate = "B2"
+        @y_coord_part = coordinate[0].ord - 64
+        @x_coord_part = coordinate[1..-1].to_i
+        @other_player_board = double('other player board')
+        allow(@other_player_board).to receive(:valid_coordinate?).and_return(true)
+        board = double('computer board')
+        @computer_player = ComputerPlayer.new(board)
+      end
+      it 'picks a north option' do
+        expected_coordinate = "A2"
+        actual_coord = @computer_player.pick_north_guess(@y_coord_part, @x_coord_part, @other_player_board)
+        expect(actual_coord).to eq expected_coordinate
+      end
+      it 'picks a east option' do
+        expected_coordinate = "B3"
+        actual_coord = @computer_player.pick_east_guess(@y_coord_part, @x_coord_part, @other_player_board)
+        expect(actual_coord).to eq expected_coordinate
+      end
+      it 'picks a south option' do
+        expected_coordinate = "C2"
+        actual_coord = @computer_player.pick_south_guess(@y_coord_part, @x_coord_part, @other_player_board)
+        expect(actual_coord).to eq expected_coordinate
+      end
+      it 'picks a west option' do
+        expected_coordinate = "B1"
+        actual_coord = @computer_player.pick_west_guess(@y_coord_part, @x_coord_part, @other_player_board)
+        expect(actual_coord).to eq expected_coordinate
+      end
+    end
+
 end
