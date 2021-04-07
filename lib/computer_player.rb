@@ -151,9 +151,8 @@ class ComputerPlayer < Player
         fire_on_coordinate = get_random_coordinate
       end
       break if attempt_to_fire_on(other_player_board, fire_on_coordinate) do |fire_on_cell|
-        if fire_on_cell.ship.sunk?
-          @guesses = []
-        end
+        remember_previous_hit(fire_on_cell)
+        set_four_guesses(other_player_board, fire_on_coordinate)
       end
     end
     move_on?
