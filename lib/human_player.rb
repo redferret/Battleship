@@ -29,10 +29,6 @@ class HumanPlayer < Player
     end
   end
 
-  def render_board
-    @board.render(true)
-  end
-
   def human_shot(other_player_board)
     coord = validate_player_input(other_player_board)
 

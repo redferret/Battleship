@@ -115,6 +115,7 @@ describe ComputerPlayer do
         mock_cell = double('Cell')
         allow(mock_cell).to receive(:empty?).and_return(false)
         allow(mock_cell).to receive(:coordinate).and_return("A1")
+        allow(computer_player).to receive(:puts).with anything
         actual_value = computer_player.the_choice_is_a_hit?(mock_cell)
 
         expect(actual_value).to eq true
@@ -125,6 +126,7 @@ describe ComputerPlayer do
         mock_cell = double('Cell')
         allow(mock_cell).to receive(:empty?).and_return(true)
         allow(mock_cell).to receive(:coordinate).and_return("A1")
+        allow(computer_player).to receive(:puts).with anything
         actual_value = computer_player.the_choice_is_a_hit?(mock_cell)
 
         expect(actual_value).to eq false
@@ -141,6 +143,7 @@ describe ComputerPlayer do
         allow(mock_cell).to receive(:empty?).and_return(false)
 
         computer_player = ComputerPlayer.new(mock_board)
+        allow(computer_player).to receive(:puts).with anything
 
         return_value = computer_player.cell_was_not_fired_on?(mock_cell, mock_other_player_board)
 
@@ -155,6 +158,7 @@ describe ComputerPlayer do
         allow(mock_cell).to receive(:empty?).and_return(false)
 
         computer_player = ComputerPlayer.new(mock_board)
+        allow(computer_player).to receive(:puts).with anything
 
         return_value = computer_player.cell_was_not_fired_on?(mock_cell, mock_other_player_board)
 

@@ -15,18 +15,28 @@ describe HumanPlayer do
 
   context '#place_ships' do
     it 'place ships on board' do
-      board = Board.new
-      human_player = HumanPlayer.new(board)
+
+      ship = Ship.build_ship(:destroyer)
+      mock_board = double('board')
+      human_player = HumanPlayer.new(mock_board)
+
+      allow(mock_board).to receive(:valid_placement?).and_return(true)
+      allow(mock_board).to receive(:render).with(true)
+      allow(mock_board).to receive(:place).with(ship, ["A1", "A2", "A3"])
+
+      allow(human_player).to receive(:puts).with anything
       allow(human_player).to receive(:get_user_input).and_return("A1 A2 A3")
-      allow(human_player).to receive(:get_ships).and_return([Ship.build_ship(:destroyer)])
+
+      allow(human_player).to receive(:get_ships).and_return([ship])
+
       human_player.place_ships
 
-      expected_1 = "  1 2 3 4 \n" +
-                   "A S S S . \n" +
-                   "B . . . . \n" +
-                   "C . . . . \n" +
-                   "D . . . . \n"
-      expect(human_player.render_board).to eq(expected_1)
+      expect(human_player).to have_received(:get_user_input)
+      expect(human_player).to have_received(:get_ships)
+
+      expect(mock_board).to have_received(:valid_placement?)
+      expect(mock_board).to have_received(:render)
+      expect(mock_board).to have_received(:place)
     end
   end
 
