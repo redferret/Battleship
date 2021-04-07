@@ -29,7 +29,7 @@ when 'p'
   computer_player.place_ships
 
   puts "I have laid out my ships on the grid."
-  puts "You now need to lay out your two ships."
+  puts "You now need to lay out your ships."
 
   human_player.ships_list
   puts human_player.render_board(true)
