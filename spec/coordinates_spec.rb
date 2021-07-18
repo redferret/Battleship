@@ -5,7 +5,7 @@ require './lib/board'
 describe Coordinates do
   context '#diagonal?' do
     it 'tests if the coordinates are diagonal' do
-      coords = Coordinates::to_a("A1 B2 C3")
+      coords = Coordinates.to_a("A1 B2 C3")
       expect(Coordinates::diagonal?(coords)).to eq true
     end
   end

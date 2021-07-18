@@ -1,10 +1,13 @@
 require './lib/board'
 require './lib/ship'
+require './lib/ship_yard'
 
 class Player
+  attr_reader :board
+  
   def initialize(board)
     @board = board
-    @player_ships = Ship.get_ships
+    @player_ships = ShipYard.get_ships
   end
 
   def get_ships
