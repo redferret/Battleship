@@ -58,5 +58,4 @@ class HumanPlayer < Player
       puts "Your shot on #{cell_fired_on.coordinate} was a hit."
     end
   end
-
 end

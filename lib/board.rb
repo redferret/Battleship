@@ -81,3 +81,17 @@ class Board
   end
 
 end
+
+def place_computer_ships
+  cruiser = Ship.new('', 5)
+  ship2 = Ship.new('', 3)
+  valid = true
+
+  until valid do
+    coord = get_a_random_coord
+    orientation = rand(2) # => 1 or 0
+    coords = coords = build_coords(coord, orientation)
+    valid = board.place_ship(ship2, coords)
+  end
+
+end

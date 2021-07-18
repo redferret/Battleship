@@ -2,6 +2,7 @@ require 'rspec'
 require './lib/human_player'
 require './lib/computer_player'
 require './lib/player'
+require './lib/ship_yard'
 
 describe HumanPlayer do
   context '#initialize' do
@@ -16,7 +17,7 @@ describe HumanPlayer do
   context '#place_ships' do
     it 'place ships on board' do
 
-      ship = Ship.build_ship(:destroyer)
+      ship = ShipYard.build_ship(:destroyer)
       mock_board = double('board')
       human_player = HumanPlayer.new(mock_board)
 
