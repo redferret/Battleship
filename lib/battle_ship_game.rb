@@ -55,18 +55,17 @@ class BattleShipGame
         break
       end
     end
-
-    def print_boards
-      puts "=============COMPUTER BOARD============="
-      puts @computer_player.render_board
-      puts "==============PLAYER BOARD=============="
-      puts @human_player.render_board(true)
-    end
+  end
+  
+  def print_boards
+    puts "=============COMPUTER BOARD============="
+    puts @computer_player.render_board
+    puts "==============PLAYER BOARD=============="
+    puts @human_player.render_board(true)
   end
 
   def play
     welcome_menu
-
     case menu_select
     when 'p'
       place_ships

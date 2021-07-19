@@ -25,14 +25,14 @@ class ComputerPlayer < Player
     when HORIZONTAL
       start_y_coord = coordinate[0]
       coordinates = []
-      for count in (0...ship_length) do
+      (0...ship_length).times do |count|
         coordinates << "#{start_y_coord}#{count + start_x_coord}"
       end
       return coordinates
     when VERTICAL
       start_y_coord = coordinate[0].ord - 64
       coordinates = []
-      for count in (0...ship_length) do
+      (0...ship_length).times do |count|
         coordinates << "#{(count + 64 + start_y_coord).chr}#{start_x_coord}"
       end
       return coordinates
