@@ -40,7 +40,7 @@ class BattleShipGame
 
   def game_loop
     loop do
-      print_boards(@computer_player, @human_player)
+      print_boards
 
       @human_player.take_turn(@computer_player.board)
       @computer_player.take_turn(@human_player.board)
